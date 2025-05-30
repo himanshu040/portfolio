@@ -7,9 +7,9 @@ class AppStrings {
 
   // General
   final String appName = "Himanshu Singh | Mobile Developer";
+  final String fontfamily="Inter";
+
   
-
-
   // Error messages
   final String errorGeneral = "Something went wrong. Please try again.";
   final String errorNetwork = "No internet connection.";

@@ -10,7 +10,7 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       appBarTheme: AppBarTheme(
         backgroundColor:AppColors.background ,
-      )
+      ),
      );
    
 

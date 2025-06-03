@@ -32,7 +32,7 @@ class SizeConfig {
     widthMultiplier = blockWidth;
     gap= blockWidth*4;
     radius=blockWidth*6;
-    horizontalmargin= screenWidth*0.20;
+    horizontalmargin= screenWidth*0.05;
 
   }
 

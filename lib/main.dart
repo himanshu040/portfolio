@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/constants/string.dart';
 import 'package:portfolio/core/theme/app_theme.dart';
 import 'package:portfolio/feature/home.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+     SizeConfig.init(context);
     return MaterialApp(
       title: AppStrings.instance.appName,
       theme:AppTheme.lightTheme,

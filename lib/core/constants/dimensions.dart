@@ -36,6 +36,7 @@ class SizeConfig {
 
   }
 
+
   static bool isMobile() => screenWidth < 600;
   static bool isTablet() => screenWidth >= 600 && screenWidth < 1024;
   static bool isDesktop() => screenWidth >= 1024;

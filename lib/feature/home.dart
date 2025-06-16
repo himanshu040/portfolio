@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/common/widgets/animated_widget.dart';
+import 'package:portfolio/core/common/widgets/app_bar.dart';
 import 'package:portfolio/core/common/widgets/home.dart';
 import 'package:portfolio/core/common/widgets/text_gradient.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
@@ -18,44 +19,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
 
-      appBar: AppBar(
-        //  backgroundColor: Colors.white.withOpacity(0.6),
-        
-        automaticallyImplyLeading: false,
-        leadingWidth: 0,
-        leading: SizedBox(),
-        title: Padding(
-          padding:  EdgeInsets.symmetric(horizontal:SizeConfig.horizontalmargin ),
-          child: Row(
-            children: [
-              AnimatedCustomWidget(
-                child: GradientText("Himanshu Singh", style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24
-                ),gradient: LinearGradient(colors: [
-                  Color(0xFF6366F1), // indigo-500
-                    Color(0xFF8B5CF6),
-                ]),),
-              ),
-              Spacer(),
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextAnimatedButton(text: "Home",),
-                SizedBox(width: 40,),
-                 TextAnimatedButton(text: "Projects",),
-                  SizedBox(width: 40,),
-                  TextAnimatedButton(text: "Skills",),
-                   SizedBox(width: 40,),
-                   TextAnimatedButton(text: "Contact",),
-                    // SizedBox(width: 40,),
-              ],
-            ),
-          
-            ],
-          ),
-        ),
-      ),
+      appBar: CustomHeader(),
+      
+      
+      
       body: ListView(
         padding: EdgeInsets.all(0),
         shrinkWrap: true,
@@ -107,6 +74,7 @@ class _TextAnimatedButtonState extends State<TextAnimatedButton> {
   bool isHovered = false;
   @override
   Widget build(BuildContext context) {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
     return   MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) {
@@ -123,7 +91,7 @@ class _TextAnimatedButtonState extends State<TextAnimatedButton> {
                   
                   style: TextStyle(
                     
-                    color: isHovered ? AppColors.primary : Color(0xff374151),
+                    color: isHovered ? AppColors.primary : isDark?Colors.white: Color(0xff374151),
                     fontSize: isHovered ? 16:15,
                     fontWeight: FontWeight.w400,
                   ),

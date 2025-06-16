@@ -17,6 +17,35 @@ class AppTheme {
                                fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
                                fontWeight: FontWeight.w700
                              ),
+                               bodyLarge: TextStyle(
+                           
+                               fontSize:SizeConfig.isDesktop()? 20:18,
+                              fontWeight: FontWeight.w400
+                             ),
+                             
+      )
+     );
+
+      static ThemeData drakTheme=ThemeData(
+        brightness: Brightness.dark,
+      fontFamily: AppStrings.instance.fontfamily,
+      scaffoldBackgroundColor: AppColors.scaffoldBackgroundColorDark,
+      appBarTheme: AppBarTheme(
+        backgroundColor:AppColors.backgroundDark ,
+      ),
+      textTheme: TextTheme(
+        
+        titleLarge: TextStyle(
+                               color:Colors.white ,
+                                fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
+                               fontWeight: FontWeight.w700
+                             ),
+                              bodyLarge: TextStyle(
+                               color:Colors.white ,
+                               fontSize:SizeConfig.isDesktop()? 20:18,
+                              fontWeight: FontWeight.w400
+                             ),
+
                              
       )
      );

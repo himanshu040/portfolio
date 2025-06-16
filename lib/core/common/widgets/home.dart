@@ -1,72 +1,51 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/common/widgets/animated_widget.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatelessWidget  {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
+   
      SizeConfig.init(context);
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      print("fdegfegr$isDark");
     return 
             Container(
               decoration: BoxDecoration(
              gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors:
+              colors:isDark?
+              [
+                 AppColors.backgroundGradientDark2,
+                AppColors.backgroundGradientDark1,
+               
+              ]
+              :
                   [Colors.grey.shade50, Colors.grey.shade200],
             ),
               ),
               width: SizeConfig.screenWidth,
               child: Stack(
                 children: [
-                 Transform.translate(
-                  offset: Offset(-200, -50),
-              
-                   child: Container(
-                     width: 400,
-                     height: 400,
-                     decoration: BoxDecoration(
-                             // color: Colors.blue, /
-                             shape: BoxShape.circle,// Replace with Theme.of(context).colorScheme.primary if needed
-                           
-              boxShadow: [
-                BoxShadow(
-                  color:AppColors.primary.withOpacity(0.3),
-                  blurRadius: 70,
-                  spreadRadius: 10,
-                ),
-              ],
-                           ),
-                   ),
-                 ),
+                   Positioned(
+            top: 80,
+            left: -96,
+            child: PulsBlob(color: AppColors.primary)
+          ),
                   
             
                          Positioned(
                           top: 400,
-                           right: 0,
-                           child: Transform.translate(
-                                         offset: Offset(200, 0),
-                           
-                                          child: Container(
-                                            width: 400,
-                                            height: 400,
-                                            decoration: BoxDecoration(
-                               // color: Colors.blue, // Replace with Theme.of(context).colorScheme.primary if needed
-                               shape: BoxShape.circle,
-                               boxShadow: [
-                                 BoxShadow(
-                                           color: AppColors.secondary.withOpacity(0.3),
-                                           blurRadius: 100, // blur-3xl
-                                           spreadRadius: 10,
-                                 ),
-                               ],
-                             ),
-                                          ),
-                                        ),
+                           right: -100,
+                           bottom: 70,
+                           child: PulsBlob(color: AppColors.secondary)
                          ),
                  Center(
                    child: Container(
@@ -99,8 +78,8 @@ class Home extends StatelessWidget {
                                                              child: ClipOval(
                                        child: Image(
                                         image: AssetImage('asset/images/profile.jpeg'),
-                                        height: 200,
-                                        width: 200, // Replace with your image
+                                        height:SizeConfig.isMobile()?200: 300,
+                                        width:SizeConfig.isMobile()?200: 300, // Replace with your image
                                         fit: BoxFit.cover,
                                       ),
                                                              ),
@@ -120,10 +99,9 @@ class Home extends StatelessWidget {
                             index: 0,
                             child: Text(
                              "Mobile App Developer",
-                             style:TextStyle(
-                               fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
-                               fontWeight: FontWeight.w700
-                             ),
+                             style:Theme.of(context).textTheme.titleLarge!.copyWith(
+                              // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
+                              )    ,
                              textAlign: TextAlign.center,
                             
                             ),
@@ -135,9 +113,9 @@ class Home extends StatelessWidget {
                             index: 1,
                             child: Text(
                             "I'm a passionate Mobile Application developer building sleek, performant apps and powerful backend solutions with SpringBoot and Firebase — used and loved by thousands globally.",
-                            style: TextStyle(
-                              fontSize:SizeConfig.isDesktop()? 20:18,
-                              fontWeight: FontWeight.w400
+                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              // fontSize:SizeConfig.isDesktop()? 20:18,
+                              // fontWeight: FontWeight.w400
                             ),
                             textAlign: TextAlign.center,
                                                      ),
@@ -268,5 +246,76 @@ class _AnimatedPingDotState extends State<AnimatedPingDot> with SingleTickerProv
         );
       },
     );
+  }
+}
+
+
+class PulsBlob extends StatefulWidget {
+  const PulsBlob({required this.color,super.key});
+
+ final Color color;
+
+  @override
+  State<PulsBlob> createState() => _PulsBlobState();
+}
+
+class _PulsBlobState extends State<PulsBlob> with  SingleTickerProviderStateMixin{
+
+   late AnimationController _controller;
+  late Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _scale = Tween(begin: 0.95, end: 1.05).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    // Add optional delay
+    Future.delayed(Duration.zero, () {
+      if (mounted) _controller.repeat(reverse: true);
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+       animation: _controller,
+      builder: (_, __) {
+        return Transform.scale(
+          scale: _scale.value,
+          child: Container(
+            
+                 
+                    width: 288,
+                    height: 288,
+                    decoration: BoxDecoration(
+                      color: widget.color.withOpacity(0.4),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: widget.color.withOpacity(0.4),
+                          blurRadius: 100,
+                          spreadRadius: 20,
+                        ),
+                      ],
+                    ),
+                    child: BackdropFilter(filter: ImageFilter.blur(
+                            sigmaX: 80,
+                            sigmaY:80,
+
+                           ),
+                           child: SizedBox(),
+                           ),
+                  ),
+        );
+      }
+    );
+          
   }
 }

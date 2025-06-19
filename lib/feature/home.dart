@@ -4,6 +4,7 @@ import 'package:portfolio/core/common/widgets/animated_widget.dart';
 import 'package:portfolio/core/common/widgets/app_bar.dart';
 import 'package:portfolio/core/common/widgets/home.dart';
 import 'package:portfolio/core/common/widgets/text_gradient.dart';
+import 'package:portfolio/core/common/widgets/work.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
 
@@ -28,10 +29,7 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         children: [
         Home(),
-        Container(
-
-
-        )
+        Work()
         
       
         ],

@@ -37,7 +37,7 @@ class AppTheme {
         
         titleLarge: TextStyle(
                                color:Colors.white ,
-                                fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
+                                fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?40 :55,
                                fontWeight: FontWeight.w700
                              ),
                               bodyLarge: TextStyle(

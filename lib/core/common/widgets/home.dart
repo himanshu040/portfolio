@@ -47,13 +47,13 @@ class Home extends StatelessWidget  {
                            bottom: 70,
                            child: PulsBlob(color: AppColors.secondary)
                          ),
-                 Center(
-                   child: Container(
+                 Container(
             
                      padding:  EdgeInsets.symmetric(horizontal:SizeConfig.isTablet()||SizeConfig.isMobile()? 40: 100, vertical: 60),
-                    child: Column(
+                    child:
+                    SizeConfig.isMobile()?Column(
                       children: [
-                        TweenAnimationBuilder<double>(
+                         TweenAnimationBuilder<double>(
                                 tween: Tween<double>(
               begin: 0,
               end: 1,
@@ -95,92 +95,274 @@ class Home extends StatelessWidget  {
                              );
                            }
                          ),
-                          AnimatedCustomWidget(
-                            index: 0,
-                            child: Text(
-                             "Mobile App Developer",
-                             style:Theme.of(context).textTheme.titleLarge!.copyWith(
-                              // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
-                              )    ,
-                             textAlign: TextAlign.center,
-                            
+                        
+                       Column(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AnimatedCustomWidget(
+                                  index: 0,
+                                  child: Text.rich(
+                                   TextSpan(children: [
+                                    TextSpan(
+                                       text: "Hello.\nI'm",
+                                     style:Theme.of(context).textTheme.titleLarge!.copyWith(
+                                      // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
+                                      )    ,
+                                    ),
+                                    TextSpan(
+                                      text:" Himanshu.",
+                                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                               foreground: Paint()
+                                 ..shader = LinearGradient(colors: [
+                                         Color(0xFF6366F1), // indigo-500
+                                           Color(0xFF8B5CF6),
+                                       ]).createShader(
+                                   const Rect.fromLTWH(0, 0, 200, 70),
+                                 ),
+                             ),
+                                    )
+                                   ])
+                                    //  textAlign: TextAlign.center,
+                                    
+                                    ),
+                                ),
+                                                         SizedBox(
+                                height: 10,
+                                                         ),
+                                AnimatedCustomWidget(
+                                  index: 1,
+                                  child: Text(
+                                  "I'm a passionate Mobile Application developer building sleek, performant apps and powerful backend solutions with SpringBoot and Firebase — used and loved by thousands globally.",
+                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    // fontSize:SizeConfig.isDesktop()? 20:18,
+                                    // fontWeight: FontWeight.w400
+                                  ),
+                                  textAlign: TextAlign.center,
+                                                           ),
+                                ),
+                                SizedBox(
+                                height: 20,
+                                                         ),
+                                //                         AnimatedCustomWidget(
+                                // index: 2,
+                                // child: Wrap(
+                                //                     spacing: 16,
+                                //                     runSpacing: 8,
+                                //                     alignment: WrapAlignment.center,
+                                //                     children: [
+                                //                       ElevatedButton.icon(
+                                // onPressed: () {},
+                                // icon: const Icon(CupertinoIcons.folder,color: Colors.white,),
+                                // label: const Text("View My Work",
+                                // style: TextStyle(
+                                //   fontSize: 16,
+                                //   fontWeight: FontWeight.w600,
+                                //   color: Colors.white
+                                // ),
+                                // ),
+                                // style: ElevatedButton.styleFrom(
+                                //   backgroundColor: AppColors.buttons,
+                                //   foregroundColor: Colors.black ,
+                                //   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                //   shape: RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.circular(12),
+                                //   ),
+                                //   elevation: 10,
+                                // ),
+                                //                       ),
+                                //                       ElevatedButton.icon(
+                                // onPressed: () {},
+                                //   icon: const Icon(Icons.send,color: Colors.black,),
+                                // label: const Text("Get In Touch",
+                                //  style: TextStyle(
+                                //   fontSize: 16,
+                                //   fontWeight: FontWeight.w600,
+                                //   color: Colors.black
+                                // ),
+                                // ),
+                                // style: ElevatedButton.styleFrom(
+                                //   backgroundColor: Colors.white,
+                                //   foregroundColor: Colors.black ,
+                                //   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                //   shape: RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.circular(12),
+                                //     side: BorderSide(
+                                //       color: Colors.grey,width: 0.5
+                                //     )
+                                //   ),
+                                //   elevation: 10,
+                                // ),
+                                //                       ),
+                                                  
+                                //                     ],
+                                //                   ),
+                                //                         ),
+                              ],
                             ),
-                          ),
-                         SizedBox(
-                          height: 10,
-                         ),
-                          AnimatedCustomWidget(
-                            index: 1,
-                            child: Text(
-                            "I'm a passionate Mobile Application developer building sleek, performant apps and powerful backend solutions with SpringBoot and Firebase — used and loved by thousands globally.",
-                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              // fontSize:SizeConfig.isDesktop()? 20:18,
-                              // fontWeight: FontWeight.w400
-                            ),
-                            textAlign: TextAlign.center,
-                                                     ),
-                          ),
-                          SizedBox(
-                          height: 20,
-                         ),
-                        AnimatedCustomWidget(
-                          index: 2,
-                          child: Wrap(
-                                              spacing: 16,
-                                              runSpacing: 8,
-                                              alignment: WrapAlignment.center,
-                                              children: [
-                                                ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(CupertinoIcons.folder,color: Colors.white,),
-                          label: const Text("View My Work",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white
-                          ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.buttons,
-                            foregroundColor: Colors.black ,
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            elevation: 10,
-                          ),
-                                                ),
-                                                ElevatedButton.icon(
-                          onPressed: () {},
-                            icon: const Icon(Icons.send,color: Colors.black,),
-                          label: const Text("Get In Touch",
-                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black
-                          ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black ,
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: BorderSide(
-                                color: Colors.grey,width: 0.5
-                              )
-                            ),
-                            elevation: 10,
-                          ),
-                                                ),
-                                            
-                                              ],
-                                            ),
-                        ),
+                   
+                        
+                     
                       ],
-                    ),
-                   ),
-                 )         
+                    ):
+                    
+                     Padding(
+                       padding:  EdgeInsets.only(top:SizeConfig.screenHeight*0.10,),
+                       child: Row(
+                        children: [
+                          
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AnimatedCustomWidget(
+                                    index: 0,
+                                    child: Text.rich(
+                                   TextSpan(children: [
+                                    TextSpan(
+                                       text: "Hello.\nI'm",
+                                     style:Theme.of(context).textTheme.titleLarge!.copyWith(
+                                      // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
+                                      )    ,
+                                    ),
+                                    TextSpan(
+                                      text:" Himanshu.",
+                                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                               foreground: Paint()
+                                 ..shader = LinearGradient(colors: [
+                                         Color(0xFF6366F1), // indigo-500
+                                           Color(0xFF8B5CF6),
+                                       ]).createShader(
+                                   const Rect.fromLTWH(0, 0, 200, 70),
+                                 ),
+                             ),
+                                    )
+                                   ])
+                                    //  textAlign: TextAlign.center,
+                                    
+                                    ),
+                                  ),
+                        SizedBox(height: 10,) ,
+                                  AnimatedCustomWidget(
+                                    index: 1,
+                                    child: Text(
+                                    "I'm a passionate Mobile Application developer building sleek, performant apps and powerful backend solutions with SpringBoot and Firebase — used and loved by thousands globally.If you need a modern and powerful website, simply send me an email.",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      // fontSize:SizeConfig.isDesktop()? 20:18,
+                                      // fontWeight: FontWeight.w400
+                                    ),
+                                    // textAlign: TextAlign.center,
+                                                             ),
+                                  ),
+                                  // SizedBox(
+                                  // height: 20,
+                                  //                          ),
+                                  //                         AnimatedCustomWidget(
+                                  // index: 2,
+                                  // child: Wrap(
+                                  //                     spacing: 16,
+                                  //                     runSpacing: 8,
+                                  //                     alignment: WrapAlignment.center,
+                                  //                     children: [
+                                  //                       ElevatedButton.icon(
+                                  // onPressed: () {},
+                                  // icon: const Icon(CupertinoIcons.folder,color: Colors.white,),
+                                  // label: const Text("View My Work",
+                                  // style: TextStyle(
+                                  //   fontSize: 16,
+                                  //   fontWeight: FontWeight.w600,
+                                  //   color: Colors.white
+                                  // ),
+                                  // ),
+                                  // style: ElevatedButton.styleFrom(
+                                  //   backgroundColor: AppColors.buttons,
+                                  //   foregroundColor: Colors.black ,
+                                  //   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                  //   shape: RoundedRectangleBorder(
+                                  //     borderRadius: BorderRadius.circular(12),
+                                  //   ),
+                                  //   elevation: 10,
+                                  // ),
+                                  //                       ),
+                                  //                       ElevatedButton.icon(
+                                  // onPressed: () {},
+                                  //   icon: const Icon(Icons.send,color: Colors.black,),
+                                  // label: const Text("Get In Touch",
+                                  //  style: TextStyle(
+                                  //   fontSize: 16,
+                                  //   fontWeight: FontWeight.w600,
+                                  //   color: Colors.black
+                                  // ),
+                                  // ),
+                                  // style: ElevatedButton.styleFrom(
+                                  //   backgroundColor: Colors.white,
+                                  //   foregroundColor: Colors.black ,
+                                  //   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                                  //   shape: RoundedRectangleBorder(
+                                  //     borderRadius: BorderRadius.circular(12),
+                                  //     side: BorderSide(
+                                  //       color: Colors.grey,width: 0.5
+                                  //     )
+                                  //   ),
+                                  //   elevation: 10,
+                                  // ),
+                                  //                       ),
+                                                    
+                                  //                     ],
+                                  //                   ),
+                                  //                         ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: SizeConfig.screenWidth*0.15,
+                            ),
+                          TweenAnimationBuilder<double>(
+                                  tween: Tween<double>(
+                                     begin: 0,
+                                     end: 1,
+                                   ),
+                                   duration: const Duration(milliseconds:1000),
+                                   curve: Curves.linear,
+                                 builder: (context,value,child) {
+                                   return Transform.scale(
+                                   scale: value,
+                                 child: Opacity(
+                                  opacity: value,
+                                   child: Stack(
+                                     children: [
+                                       Container(
+                                        padding: EdgeInsets.all(5),
+                                        
+                                        decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: AppColors.primary.withOpacity(0.3), width: 4),
+                                        
+                                                               ),
+                                                               child: ClipOval(
+                                         child: Image(
+                                          image: AssetImage('asset/images/profile.jpeg'),
+                                          height:SizeConfig.isMobile()?200: 400,
+                                          width:SizeConfig.isMobile()?200: 400, // Replace with your image
+                                          fit: BoxFit.cover,
+                                        ),
+                                                               ),
+                                       ),
+                                       Positioned(
+                                        right: 0,
+                                        bottom: 0,
+                                         child: OnlineIndicator(),
+                                       )
+                                     ],
+                                   ),
+                                 ),
+                               );
+                             }
+                           ),
+                          
+                        ],
+                                           ),
+                     ),
+                   ),        
                 ],
               ),
             );

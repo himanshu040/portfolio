@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/common/widgets/animated_widget.dart';
@@ -15,6 +16,12 @@ class Home extends StatelessWidget  {
      SizeConfig.init(context);
       final isDark = Theme.of(context).brightness == Brightness.dark;
       print("fdegfegr$isDark");
+      List<String> positions=[
+        "Software Developer",
+        "Flutter Developer",
+        "Android Developer",
+        "Freelancer"
+      ];
     return 
             Container(
               decoration: BoxDecoration(
@@ -241,6 +248,7 @@ class Home extends StatelessWidget  {
                                     
                                     ),
                                   ),
+                                  AnimatedTextKit(animatedTexts: animatedTexts),
                         SizedBox(height: 10,) ,
                                   AnimatedCustomWidget(
                                     index: 1,

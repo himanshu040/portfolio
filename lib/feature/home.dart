@@ -20,7 +20,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
 
-      appBar: CustomHeader(),
+      // appBar: CustomHeader(),
+
+
+
+
+
       
       
       
@@ -30,6 +35,7 @@ class HomeScreen extends StatelessWidget {
         children: [
         Home(),
         Work()
+        
         
       
         ],

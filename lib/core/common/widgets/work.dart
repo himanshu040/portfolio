@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
 
 class Work extends StatelessWidget {
-  const Work({super.key});
+  const 
+  
+  
+  
+  Work({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SliderAnimation();
+    return SizedBox(
+      height: 100,
+    );
   }
 }
 
@@ -37,7 +43,8 @@ class _SliderAnimationState extends State<SliderAnimation> {
                         Color(0xFF8B5CF6),
                         AppColors.primary
                     ],
-                  
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter
                     )
           ),
         );

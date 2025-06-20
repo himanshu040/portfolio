@@ -18,8 +18,9 @@ class Home extends StatelessWidget  {
       print("fdegfegr$isDark");
       List<String> positions=[
         "Software Developer",
-        "Flutter Developer",
         "Android Developer",
+        "Flutter Developer",
+        
         "Freelancer"
       ];
     return 
@@ -58,7 +59,8 @@ class Home extends StatelessWidget  {
             
                      padding:  EdgeInsets.symmetric(horizontal:SizeConfig.isTablet()||SizeConfig.isMobile()? 40: 100, vertical: 60),
                     child:
-                    SizeConfig.isMobile()?Column(
+                    SizeConfig.isMobile()?
+                    Column(
                       children: [
                          TweenAnimationBuilder<double>(
                                 tween: Tween<double>(
@@ -112,13 +114,13 @@ class Home extends StatelessWidget  {
                                    TextSpan(children: [
                                     TextSpan(
                                        text: "Hello.\nI'm",
-                                     style:Theme.of(context).textTheme.titleLarge!.copyWith(
+                                     style:Theme.of(context).textTheme.headlineLarge!.copyWith(
                                       // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
                                       )    ,
                                     ),
                                     TextSpan(
                                       text:" Himanshu.",
-                                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                                foreground: Paint()
                                  ..shader = LinearGradient(colors: [
                                          Color(0xFF6366F1), // indigo-500
@@ -133,6 +135,17 @@ class Home extends StatelessWidget  {
                                     
                                     ),
                                 ),
+
+                                 AnimatedTextKit(
+                                    repeatForever: true,
+                                    isRepeatingAnimation: true,
+                                    animatedTexts: positions.map((e)=>TypewriterAnimatedText(e,
+                                    speed: Duration(milliseconds: 100),
+                                    cursor: "|",
+                                    textStyle: Theme.of(context).textTheme.headlineMedium
+                                    )).toList(),
+                                    
+                                    ),
                                                          SizedBox(
                                 height: 10,
                                                          ),
@@ -227,13 +240,13 @@ class Home extends StatelessWidget  {
                                    TextSpan(children: [
                                     TextSpan(
                                        text: "Hello.\nI'm",
-                                     style:Theme.of(context).textTheme.titleLarge!.copyWith(
+                                     style:Theme.of(context).textTheme.headlineLarge!.copyWith(
                                       // fontSize:SizeConfig.isMobile()?36:SizeConfig.isTablet()?48 :60,
                                       )    ,
                                     ),
                                     TextSpan(
                                       text:" Himanshu.",
-                                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                                foreground: Paint()
                                  ..shader = LinearGradient(colors: [
                                          Color(0xFF6366F1), // indigo-500
@@ -248,7 +261,16 @@ class Home extends StatelessWidget  {
                                     
                                     ),
                                   ),
-                                  AnimatedTextKit(animatedTexts: animatedTexts),
+                                  AnimatedTextKit(
+                                    repeatForever: true,
+                                    isRepeatingAnimation: true,
+                                    animatedTexts: positions.map((e)=>TypewriterAnimatedText(e,
+                                    speed: Duration(milliseconds: 100),
+                                    cursor: "|",
+                                    textStyle: Theme.of(context).textTheme.headlineMedium
+                                    )).toList(),
+                                    
+                                    ),
                         SizedBox(height: 10,) ,
                                   AnimatedCustomWidget(
                                     index: 1,
@@ -349,8 +371,8 @@ class Home extends StatelessWidget  {
                                                                child: ClipOval(
                                          child: Image(
                                           image: AssetImage('asset/images/profile.jpeg'),
-                                          height:SizeConfig.isMobile()?200: 400,
-                                          width:SizeConfig.isMobile()?200: 400, // Replace with your image
+                                          height:SizeConfig.isMobile()?200: SizeConfig.screenWidth*0.30,
+                                          width:SizeConfig.isMobile()?200: SizeConfig.screenWidth*0.30, // Replace with your image
                                           fit: BoxFit.cover,
                                         ),
                                                                ),

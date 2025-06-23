@@ -52,7 +52,7 @@ class Home extends StatelessWidget  {
                          Positioned(
                           top: 400,
                            right: -100,
-                           bottom: 70,
+                           bottom: 120,
                            child: PulsBlob(color: AppColors.secondary)
                          ),
                  Container(
@@ -485,7 +485,7 @@ class _PulsBlobState extends State<PulsBlob> with  SingleTickerProviderStateMixi
       duration: const Duration(seconds: 1),
     );
 
-    _scale = Tween(begin: 0.95, end: 1.05).animate(
+    _scale = Tween(begin: 0.80, end: 1.05).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 

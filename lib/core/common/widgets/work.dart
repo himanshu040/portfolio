@@ -10,8 +10,11 @@ class Work extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
+    return Column(
+
+      children: [
+        
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
 
@@ -11,6 +12,10 @@ class Work extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+  
+   
+
     return Padding(
          padding:  EdgeInsets.symmetric(horizontal:SizeConfig.isTablet()||SizeConfig.isMobile()? 40: 100, vertical: 60),
       child: Column(
@@ -43,7 +48,14 @@ class Work extends StatelessWidget {
                                      const Rect.fromLTWH(0, 0, 200, 70)                       ),
             ),
           ),
-       SliderAnimation(),
+       SliderAnimation(
+        workClass: WorkClass(desc: "",projectname: "MyDigicel Pacific",skills: [
+          "Flutter",
+          "Bloc",
+          "Payment Gateway"
+        
+        ]),
+       ),
        SizedBox(height: 1000,)
          
         ],
@@ -57,7 +69,9 @@ class Work extends StatelessWidget {
 
 
 class SliderAnimation extends StatefulWidget {
-  const SliderAnimation({super.key});
+  const SliderAnimation({super.key,required this.workClass});
+
+ final WorkClass workClass;
 
   @override
   State<SliderAnimation> createState() => _SliderAnimationState();
@@ -65,69 +79,82 @@ class SliderAnimation extends StatefulWidget {
 
 class _SliderAnimationState extends State<SliderAnimation> {
 
-   final ScrollController _scrollController = ScrollController();
+
   double scrollOffset = 0;
+  late WorkClass _work;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() {
-      setState(() {
-        scrollOffset = _scrollController.offset;
-      });
-    });
+    _work=widget.workClass;
+   
   }
   @override
   Widget build(BuildContext context) {
-      final verticalShift = (scrollOffset / 2).clamp(0.0, 150.0);
-      print(verticalShift);
-    return  SingleChildScrollView(
-        controller: _scrollController,
-            
-            child: SizedBox(
-              height: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Transform.translate(
-                         offset: Offset(0, verticalShift),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                           children: [
-                            Text("Opus Forex Website",
-                            
-                            )
-                           ],
-                        ),
-                                    
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 47, 50, 240),
-                            shape: BoxShape.circle
-                                    
-                          ),
-                         
-                        ),
-                      ],
-                    ),
-                  ),
-              
-                  Container(
-                    height: 300,
-                    width: 100,
-                    color: Colors.white,
-                  )
-                 
-              
-                ],
-              ),
+
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+            Text(_work.projectname,
+            style: GoogleFonts.abrilFatface(
+               textStyle: Theme.of(context).textTheme.displaySmall,
             ),
-          );
+        
+            
+            ),
+        
+            SizedBox(
+              height: 20,
+            ),
+            
+           Wrap(
+            spacing:10,
+            children:_work.skills.map((e)=> Container(
+              padding: EdgeInsets.symmetric(horizontal:10 ),
+              color: Color(0xFF082F49),
+              child: Text(e,
+              style: TextStyle(
+                color: Color(0xFF7DD3FC),
+                fontSize: 18,
+                fontWeight: FontWeight.w200,
+                
+              ),
+              ),
+            )).toList()
+            
+            
+            
+           )
+           ],
+        ),
+    
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            height: 550,
+            width: 350,
+            color: Colors.white,
+          ),
+        )
+       
+    
+      ],
+    );
   }
 }
 
 
+class WorkClass{
+
+ WorkClass({required this.projectname,required this.desc,required this.skills,this.link});
+ final String projectname;
+ final String desc;
+ final List<String> skills;
+ final String? link;
+
+
+}

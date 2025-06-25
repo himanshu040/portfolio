@@ -29,16 +29,17 @@ class HomeScreen extends StatelessWidget {
       
       
       
-      body: ListView(
-        padding: EdgeInsets.all(0),
-        shrinkWrap: true,
-        children: [
-        Home(),
-        Work()
+      body: SingleChildScrollView(
+        child: Column(
+             
+          children: [
+          Home(),
+          Work()
+          
+          
         
-        
-      
-        ],
+          ],
+        ),
       ),
       
     );

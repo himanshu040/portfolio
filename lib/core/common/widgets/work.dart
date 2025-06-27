@@ -132,14 +132,37 @@ class _SliderAnimationState extends State<SliderAnimation> {
            ],
         ),
     
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            height: 550,
-            width: 350,
-            color: Colors.white,
+        Card(
+          elevation: 5,
+          child: Stack(
+            children: [
+
+              Image.asset("asset/images/digicel/digicel_home.jpeg",
+              )
+
+            ],
           ),
         )
+        // Container(
+        //   height: 500,
+        //   width: 250,
+        //   decoration: BoxDecoration(
+        //     gradient: LinearGradient(
+        //       begin: Alignment.topRight,
+        //       end: Alignment.bottomLeft,
+        //       colors: [
+        //            Color(0xffCF2194),
+        //        Colors.white,
+             
+        //       Color(0xffCF2194),
+              
+        //     ],
+        //    stops: [0.0, 0.05, 1]
+            
+        //     ),
+        //     borderRadius: BorderRadius.circular(20)
+        //   ),
+        // )
        
     
       ],

@@ -82,6 +82,7 @@ flutter:
   assets:
     - asset/images/profile.jpeg
     - asset/riv/character_test.riv
+    - asset/images/digicel/
 
   #   - images/a_dot_ham.jpeg
 

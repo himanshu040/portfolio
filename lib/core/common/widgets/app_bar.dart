@@ -7,7 +7,9 @@ import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/feature/home.dart';
 
 class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
-  const CustomHeader({super.key});
+  const CustomHeader({super.key, required this.onItemTap});
+
+  final Function(GlobalKey) onItemTap;
 
   @override
   Widget build(BuildContext context) {
@@ -15,51 +17,60 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      // decoration: const BoxDecoration(
-      //   color: Colors.transparent, // Initially transparent
-      // ),
-      child: SafeArea(
-        child:  Padding(
-          padding:  EdgeInsets.symmetric(horizontal:SizeConfig.horizontalmargin ),
-          child: Row(
-            children: [
-              AnimatedCustomWidget(
-                child: GradientText("Himanshu Singh", style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24
-                ),
+      decoration: BoxDecoration(
+        color: Colors.black, // 50% transparent black
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: SizeConfig.horizontalmargin),
+        child: Row(
+          children: [
+            AnimatedCustomWidget(
+              isInitial: true,
+              child: GradientText(
+                "Himanshu Singh",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
                 gradient: LinearGradient(colors: [
                   Color(0xFF6366F1), // indigo-500
-                    Color(0xFF8B5CF6),
-                ]),),
+                  Color(0xFF8B5CF6),
+                ]),
               ),
-              Spacer(),
+            ),
+            Spacer(),
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if(!SizeConfig.isMobile())
-                Row(
-                  children: [
-                    TextAnimatedButton(text: "Home",),
-                    SizedBox(width: 40,),
-                     TextAnimatedButton(text: "Projects",),
-                      SizedBox(width: 40,),
-                      TextAnimatedButton(text: "Skills",),
-                       SizedBox(width: 40,),
-                       TextAnimatedButton(text: "Contact",),
-                        SizedBox(width: 40,),
-                  ],
-                ),
-                    // _IconButton(onPressed: (){
-                    //   BlocProvider.of<ThemeCubit>(context).toggleTheme();
-                    // },icon: Icons.wb_sunny_outlined,tooltip: "Night Mode")
-
+                if (!SizeConfig.isMobile())
+                  Row(
+                    children: [
+                      TextAnimatedButton(
+                        text: "Hello",
+                        widgetKey: homeKey,
+                      ),
+                      const SizedBox(width: 40),
+                      TextAnimatedButton(
+                        text: "Works",
+                        widgetKey: worksKey,
+                      ),
+                      const SizedBox(width: 40),
+                      TextAnimatedButton(
+                        text: "Resume",
+                        widgetKey: resumeKey,
+                      ),
+                      const SizedBox(width: 40),
+                      TextAnimatedButton(
+                        text: "Contact",
+                        widgetKey: contactKey,
+                      ),
+                      const SizedBox(width: 40),
+                    ],
+                  ),
+                // _IconButton(onPressed: (){
+                //   BlocProvider.of<ThemeCubit>(context).toggleTheme();
+                // },icon: Icons.wb_sunny_outlined,tooltip: "Night Mode")
               ],
             ),
-          
-            ],
-          ),
-        )
+          ],
+        ),
       ),
     );
   }
@@ -107,7 +118,10 @@ Widget _NavItem(String title, String href, bool isDark) {
 }
 
 // Icon Button Widget
-Widget _IconButton({required IconData icon, required String tooltip, required VoidCallback onPressed}) {
+Widget _IconButton(
+    {required IconData icon,
+    required String tooltip,
+    required VoidCallback onPressed}) {
   return Tooltip(
     message: tooltip,
     child: GestureDetector(

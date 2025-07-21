@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:portfolio/core/common/cubit/cubit/theme_cubit.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/constants/string.dart';
 import 'package:portfolio/core/theme/app_theme.dart';
 import 'package:portfolio/feature/home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return BlocProvider<ThemeCubit>(
-      create: (context)=>ThemeCubit(),
+      create: (context) => ThemeCubit(),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
-          print(state.themeMode);
           return MaterialApp(
             title: AppStrings.instance.appName,
             // themeMode: state.themeMode,
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.drakTheme,
             debugShowCheckedModeBanner: false,
-            home: const HomeScreen(),
+            home: HomeScreen(),
           );
         },
       ),

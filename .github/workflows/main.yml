@@ -115,8 +115,8 @@ jobs:
 
       - name: Authenticate Firebase CLI
         run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > "${HOME}/firebase-key.json"
-          firebase auth:login --token "$(cat ${HOME}/firebase-key.json)" || true
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}" > "${HOME}/firebase-key.json"
+          firebase login --token "$(cat ${HOME}/firebase-key.json)" || true
 
       - name: Deploy to Firebase Hosting
         run: |

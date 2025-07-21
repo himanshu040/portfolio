@@ -1,3 +1,70 @@
+# name: Firebase Multi-Env Deploy
+
+# on:
+#   push:
+#     branches:
+#       - test
+#       - staging
+#       - main
+# permissions:
+#   checks: write
+#   contents: read
+#   pull-requests: write      
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Set Up Java
+#         uses: actions/setup-java@v3.12.0
+#         with:
+#           distribution: 'oracle'
+#           java-version: '17'  
+
+#       - name: Set Up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#          flutter-version: '3.30.0-0.1.pre'
+#          channel: 'beta' 
+
+#       - name: Install Dependencies
+#         run: flutter pub get      
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '20'
+
+#       - name: Install Firebase CLI
+#         run: npm install -g firebase-tools
+
+#       - name: Build Flutter web
+#         run: flutter build web  
+  
+
+      
+#       - uses: FirebaseExtended/action-hosting-deploy@v0
+#         with:
+#           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+#           projectId: himanshu-singh-portfolio-4e9de
+#         # env:
+#         #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}
+#       - name: Deploy to Firebase
+#         run: |
+#           if [ "${{ github.ref }}" == "refs/heads/test" ]; then
+#             firebase deploy --only hosting:test
+#           elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
+#             firebase deploy --only hosting:staging
+#           elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+#             firebase deploy --only hosting:prod
+#           else
+#             echo "No matching branch, skipping deploy."
+#           fi
+
 name: Firebase Multi-Env Deploy
 
 on:
@@ -6,6 +73,7 @@ on:
       - test
       - staging
       - main
+
 permissions:
   checks: write
   contents: read
@@ -28,8 +96,8 @@ jobs:
       - name: Set Up Flutter
         uses: subosito/flutter-action@v2
         with:
-         flutter-version: '3.30.0-0.1.pre'
-         channel: 'beta' 
+          flutter-version: '3.30.0-0.1.pre'
+          channel: 'beta' 
 
       - name: Install Dependencies
         run: flutter pub get      
@@ -44,23 +112,11 @@ jobs:
 
       - name: Build Flutter web
         run: flutter build web  
-  
 
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: himanshu-singh-portfolio-4e9de
-        # env:
-        #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}
-        run: |
-          if [ "${{ github.ref }}" == "refs/heads/test" ]; then
-            firebase deploy --only hosting:test
-          elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
-            firebase deploy --only hosting:staging
-          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            firebase deploy --only hosting:prod
-          else
-            echo "No matching branch, skipping deploy."
-          fi
-
+          channelId: ${{ github.ref_name }}

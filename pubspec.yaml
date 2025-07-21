@@ -95,7 +95,7 @@ flutter:
     - asset/images/ullas/
     - asset/images/asc/
     - asset/images/logo/
-    - .env
+
 
   #   - images/a_dot_ham.jpeg
 

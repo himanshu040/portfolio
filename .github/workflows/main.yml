@@ -113,10 +113,21 @@ jobs:
       - name: Build Flutter web
         run: flutter build web  
 
+      - name: Authenticate Firebase CLI
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > "${HOME}/firebase-key.json"
+          firebase auth:login --token "$(cat ${HOME}/firebase-key.json)" || true
+
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE }}"
-          projectId: himanshu-singh-portfolio-4e9de
-          channelId: ${{ github.ref_name }}
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/firebase-key.json"
+          if [[ "${{ github.ref }}" == "refs/heads/test" ]]; then
+            firebase deploy --only hosting:test --project himanshu-singh-portfolio-4e9de
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            firebase deploy --only hosting:staging --project himanshu-singh-portfolio-4e9de
+          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            firebase deploy --only hosting:prod --project himanshu-singh-portfolio-4e9de
+          else
+            echo "No matching branch, skipping deploy."
+          fi
+

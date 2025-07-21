@@ -112,11 +112,23 @@ jobs:
 
       - name: Build Flutter web
         run: flutter build web  
+  
 
-      - name: Deploy to Firebase Hosting
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: himanshu-singh-portfolio-4e9de
-          channelId: ${{ github.ref_name }}
+        # env:
+        #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/test" ]; then
+            firebase deploy --only hosting:test
+          elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
+            firebase deploy --only hosting:staging
+          elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            firebase deploy --only hosting:prod
+          else
+            echo "No matching branch, skipping deploy."
+          fi
+

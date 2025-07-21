@@ -6,6 +6,10 @@ on:
       - test
       - staging
       - main
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write      
 
 jobs:
   deploy:
@@ -43,8 +47,12 @@ jobs:
   
 
       - name: Deploy to Firebase
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: himanshu-singh-portfolio-4e9de
+        # env:
+        #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE}}
         run: |
           if [ "${{ github.ref }}" == "refs/heads/test" ]; then
             firebase deploy --only hosting:test
@@ -55,3 +63,4 @@ jobs:
           else
             echo "No matching branch, skipping deploy."
           fi
+

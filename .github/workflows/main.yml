@@ -15,6 +15,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set Up Java
+        uses: actions/setup-java@v3.12.0
+        with:
+          distribution: 'oracle'
+          java-version: '17'  
+
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+         flutter-version: '3.22.2'
+         channel: 'stable' 
+
+      - name: Install Dependencies
+        run: flutter pub get      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -25,9 +40,7 @@ jobs:
 
       - name: Build Flutter web
         run: flutter build web  
-
-      - name: Init Firebase hosting
-        run: firebase init hosting:github  
+  
 
       - name: Deploy to Firebase
         env:

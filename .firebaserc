@@ -1,5 +1,21 @@
 {
   "projects": {
     "default": "himanshu-singh-portfolio-4e9de"
-  }
+  },
+  "targets": {
+    "himanshu-singh-portfolio-4e9de": {
+      "hosting": {
+        "test": [
+          "465869935690-test"
+        ],
+        "staging": [
+          "himanshu-singh-portfolio-4e9de"
+        ],
+        "prod": [
+          "himanshu-portfolio-2b6b1"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

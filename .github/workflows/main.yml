@@ -47,11 +47,11 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           if [ "${{ github.ref }}" == "refs/heads/test" ]; then
-            firebase deploy --only hosting:465869935690-test
+            firebase deploy --only hosting:test
           elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
-            firebase deploy --only hosting:himanshu-singh-portfolio-4e9de
+            firebase deploy --only hosting:staging
           elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            firebase deploy --only hosting:himanshu-portfolio-2b6b1
+            firebase deploy --only hosting:prod
           else
             echo "No matching branch, skipping deploy."
           fi

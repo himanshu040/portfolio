@@ -97,7 +97,8 @@ class Resume extends StatelessWidget {
                           Text(
                             "Summary",
                             style: GoogleFonts.abrilFatface(
-                              textStyle: Theme.of(context).textTheme.displaySmall,
+                              textStyle:
+                                  Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
                           ResumeSection(
@@ -158,14 +159,18 @@ class Resume extends StatelessWidget {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Text(
-                                        "singh.himanshu04051999@gmail.com",
-                                        style: TextStyle(
-                                          fontSize: SizeConfig.isMobile()
-                                              ? 14
-                                              : SizeConfig.isTablet()
-                                                  ? 16
-                                                  : 18,
+                                      Expanded(
+                                        child: Text(
+                                          "singh.himanshu04051999@gmail.com",
+                                          style: TextStyle(
+                                            fontSize: SizeConfig.isMobile()
+                                                ? 12
+                                                : SizeConfig.isTablet()
+                                                    ? 14
+                                                    : 16,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       )
                                     ],
@@ -178,7 +183,8 @@ class Resume extends StatelessWidget {
                           Text(
                             "Skills",
                             style: GoogleFonts.abrilFatface(
-                              textStyle: Theme.of(context).textTheme.displaySmall,
+                              textStyle:
+                                  Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
                           SizedBox(
@@ -197,7 +203,8 @@ class Resume extends StatelessWidget {
                                       e,
                                       style: TextStyle(
                                         color: Color(0xFF7DD3FC),
-                                        fontSize: SizeConfig.isMobile() ? 14 : 18,
+                                        fontSize:
+                                            SizeConfig.isMobile() ? 14 : 18,
                                         fontWeight: FontWeight.w200,
                                       ),
                                     ),
@@ -211,7 +218,8 @@ class Resume extends StatelessWidget {
                           Text(
                             "Education",
                             style: GoogleFonts.abrilFatface(
-                              textStyle: Theme.of(context).textTheme.displaySmall,
+                              textStyle:
+                                  Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
                           ResumeSection(
@@ -229,7 +237,8 @@ class Resume extends StatelessWidget {
                                       "2018-2022",
                                       style: TextStyle(
                                         color: Color(0xFF7DD3FC),
-                                        fontSize: SizeConfig.isMobile() ? 14 : 18,
+                                        fontSize:
+                                            SizeConfig.isMobile() ? 14 : 18,
                                         fontWeight: FontWeight.w200,
                                       ),
                                     ),
@@ -276,7 +285,8 @@ class Resume extends StatelessWidget {
                           Text(
                             "Professional Experience",
                             style: GoogleFonts.abrilFatface(
-                              textStyle: Theme.of(context).textTheme.displaySmall,
+                              textStyle:
+                                  Theme.of(context).textTheme.displaySmall,
                             ),
                           ),
                           ResumeSection(
@@ -293,7 +303,8 @@ class Resume extends StatelessWidget {
                                       "Feb'25 - Jun'25",
                                       style: TextStyle(
                                         color: Color(0xFF7DD3FC),
-                                        fontSize: SizeConfig.isMobile() ? 14 : 18,
+                                        fontSize:
+                                            SizeConfig.isMobile() ? 14 : 18,
                                         fontWeight: FontWeight.w200,
                                       ),
                                     ),
@@ -312,6 +323,7 @@ class Resume extends StatelessWidget {
                                     height: 20,
                                   ),
                                   ListView.separated(
+                                      physics: NeverScrollableScrollPhysics(),
                                       separatorBuilder: (context, index) {
                                         return SizedBox(
                                           height: 10,
@@ -341,7 +353,8 @@ class Resume extends StatelessWidget {
                                               child: Text(
                                                 aspire[index],
                                                 style: TextStyle(
-                                                  fontSize: SizeConfig.isMobile()
+                                                  fontSize: SizeConfig
+                                                          .isMobile()
                                                       ? 14
                                                       : SizeConfig.isTablet()
                                                           ? 16
@@ -368,7 +381,8 @@ class Resume extends StatelessWidget {
                                       "Jan'22 - Jan'25",
                                       style: TextStyle(
                                         color: Color(0xFF7DD3FC),
-                                        fontSize: SizeConfig.isMobile() ? 14 : 18,
+                                        fontSize:
+                                            SizeConfig.isMobile() ? 14 : 18,
                                         fontWeight: FontWeight.w200,
                                       ),
                                     ),
@@ -391,6 +405,7 @@ class Resume extends StatelessWidget {
                                     height: 20,
                                   ),
                                   ListView.separated(
+                                      physics: NeverScrollableScrollPhysics(),
                                       separatorBuilder: (context, index) {
                                         return SizedBox(
                                           height: 10,
@@ -420,7 +435,8 @@ class Resume extends StatelessWidget {
                                               child: Text(
                                                 netprophets[index],
                                                 style: TextStyle(
-                                                  fontSize: SizeConfig.isMobile()
+                                                  fontSize: SizeConfig
+                                                          .isMobile()
                                                       ? 14
                                                       : SizeConfig.isTablet()
                                                           ? 16
@@ -672,6 +688,7 @@ class Resume extends StatelessWidget {
                                       height: 20,
                                     ),
                                     ListView.separated(
+                                        physics: NeverScrollableScrollPhysics(),
                                         separatorBuilder: (context, index) {
                                           return SizedBox(
                                             height: 10,
@@ -754,6 +771,7 @@ class Resume extends StatelessWidget {
                                       height: 20,
                                     ),
                                     ListView.separated(
+                                        physics: NeverScrollableScrollPhysics(),
                                         separatorBuilder: (context, index) {
                                           return SizedBox(
                                             height: 10,

@@ -148,37 +148,42 @@ class _SocialBoxState extends State<SocialBox> {
                 child: SvgPicture.asset(
                   e.icon,
                   color: Color(0xff0284C7),
-                  height: 40,
+                  height: SizeConfig.isMobile() ? 20 : 40,
                   // width: 40,
                 ),
               ),
               SizedBox(
                 width: 20,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    e.title,
-                    style: TextStyle(
-                        fontSize: SizeConfig.isMobile()
-                            ? 16
-                            : SizeConfig.isTablet()
-                                ? 18
-                                : 20,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    e.content,
-                    style: TextStyle(
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      e.title,
+                      style: TextStyle(
+                          fontSize: SizeConfig.isMobile()
+                              ? 16
+                              : SizeConfig.isTablet()
+                                  ? 18
+                                  : 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      e.content,
+                      style: TextStyle(
                         fontSize: SizeConfig.isMobile()
                             ? 8
                             : SizeConfig.isTablet()
                                 ? 10
                                 : 12,
-                        fontWeight: FontWeight.w200),
-                  )
-                ],
+                        fontWeight: FontWeight.w200,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  ],
+                ),
               )
             ],
           ),
@@ -224,7 +229,7 @@ class _StartConverStationBoxState extends State<StartConverStationBox> {
           "service_id":
               "service_mnjx68n", //collect this paramets form the emailjs website
           "user_id": "QaBno_XgFqhXVJp8d",
-          "template_id":"template_4avv8hn",
+          "template_id": "template_4avv8hn",
           "template_params": {
             "name": name.text.trim(),
             "email": email.text.trim(),
@@ -234,19 +239,19 @@ class _StartConverStationBoxState extends State<StartConverStationBox> {
         }),
       );
       print(responseToMe.statusCode);
-      if(responseToMe.statusCode==200)
-     { ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Message sent successfully!')),
-      );
-      name.clear();
-      email.clear();
-      subject.clear();
-      message.clear();}
-      else{
-         print(responseToMe.statusCode);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to send message')),
-      );
+      if (responseToMe.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Message sent successfully!')),
+        );
+        name.clear();
+        email.clear();
+        subject.clear();
+        message.clear();
+      } else {
+        print(responseToMe.statusCode);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to send message')),
+        );
       }
     } catch (e) {
       print(e);
@@ -273,56 +278,104 @@ class _StartConverStationBoxState extends State<StartConverStationBox> {
           key: _formKey,
           child: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              SizeConfig.isMobile()
+                  ? Column(
                       children: [
-                        const Text(
-                          "Your Name",
-                          style: TextStyle(fontWeight: FontWeight.w200),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Your Name",
+                              style: TextStyle(fontWeight: FontWeight.w200),
+                            ),
+                            const SizedBox(height: 10),
+                            TextFormField(
+                              controller: name,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Name required';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          controller: name,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Name required';
-                            }
-                            return null;
-                          },
+                        const SizedBox(height: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Your Email",
+                              style: TextStyle(fontWeight: FontWeight.w200),
+                            ),
+                            const SizedBox(height: 10),
+                            TextFormField(
+                              controller: email,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Email required';
+                                }
+                                if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                                  return 'Enter valid email';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Your Name",
+                                style: TextStyle(fontWeight: FontWeight.w200),
+                              ),
+                              const SizedBox(height: 10),
+                              TextFormField(
+                                controller: name,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Name required';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Your Email",
+                                style: TextStyle(fontWeight: FontWeight.w200),
+                              ),
+                              const SizedBox(height: 10),
+                              TextFormField(
+                                controller: email,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Email required';
+                                  }
+                                  if (!RegExp(r'\S+@\S+\.\S+')
+                                      .hasMatch(value)) {
+                                    return 'Enter valid email';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Your Email",
-                          style: TextStyle(fontWeight: FontWeight.w200),
-                        ),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                          controller: email,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Email required';
-                            }
-                            if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                              return 'Enter valid email';
-                            }
-                            return null;
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -130,4 +130,5 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HIMANSHU_SINGH_PORTFOLIO_4E9DE }}"
           projectId: himanshu-singh-portfolio-4e9de
+          channelId: live
           

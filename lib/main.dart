@@ -9,7 +9,7 @@ import 'package:portfolio/feature/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

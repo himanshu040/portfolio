@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/common/widgets/animated_widget.dart';
 import 'package:portfolio/core/common/widgets/app_bar.dart';
 import 'package:portfolio/core/common/widgets/contact.dart';
 import 'package:portfolio/core/common/widgets/home.dart';
 import 'package:portfolio/core/common/widgets/resume.dart';
-import 'package:portfolio/core/common/widgets/text_gradient.dart';
 import 'package:portfolio/core/common/widgets/work.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
@@ -30,31 +27,10 @@ void scrollToSection(GlobalKey key) {
 }
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  // final GlobalKey homeKey = GlobalKey();
-  // final GlobalKey worksKey = GlobalKey();
-  // final GlobalKey resumeKey = GlobalKey();
-  // final GlobalKey contactKey = GlobalKey();
+ const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _components = [
-      Home(
-        key: homeKey,
-      ),
-      Work(
-        scrollController: scrollController,
-        key: worksKey,
-      ),
-      Resume(
-        key: resumeKey,
-        scrollController: scrollController,
-      ),
-      Contact(
-        key: contactKey,
-      )
-    ];
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -85,15 +61,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         )
-
-        //     ListView.builder(
-        //   padding: EdgeInsets.all(0),
-        //   controller: scrollController,
-        //   addAutomaticKeepAlives: true,
-
-        //   itemCount: _components.length,
-        //   itemBuilder: (context, index) => _components[index],
-        // ),
         );
   }
 }

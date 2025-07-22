@@ -130,6 +130,9 @@ class Home extends StatelessWidget {
                                   scrollToSection(contactKey);
                                 },
                               ),
+                              SizedBox(
+                                width: 20,
+                              ),
                               Button(
                                 text: "DOWNLOAD RESUME",
                                 onClick: () async {

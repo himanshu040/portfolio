@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/common/widgets/animated_widget.dart';
 import 'package:portfolio/core/common/widgets/button.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
+import 'package:portfolio/core/constants/string.dart';
 import 'package:portfolio/core/theme/color_pallete.dart';
 import 'package:portfolio/feature/home.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -138,10 +139,10 @@ class Home extends StatelessWidget {
                                 onClick: () async {
                                   if (!await launchUrl(
                                     Uri.parse(
-                                        "https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"),
+                                       AppStrings.instance.resumeUrl),
                                   )) {
                                     throw Exception(
-                                        'Could not launch ${"https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"}');
+                                        'Could not launch ${AppStrings.instance.resumeUrl}');
                                   }
                                 },
                               ),
@@ -242,10 +243,10 @@ class Home extends StatelessWidget {
                                     onClick: () async {
                                       if (!await launchUrl(
                                         Uri.parse(
-                                            "https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"),
+                                            AppStrings.instance.resumeUrl),
                                       )) {
                                         throw Exception(
-                                            'Could not launch ${"https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"}');
+                                            'Could not launch ${AppStrings.instance.resumeUrl}');
                                       }
                                     },
                                   ),

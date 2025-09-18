@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/core/common/widgets/animated_widget.dart';
 import 'package:portfolio/core/common/widgets/button.dart';
 import 'package:portfolio/core/constants/dimensions.dart';
+import 'package:portfolio/core/constants/string.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Resume extends StatelessWidget {
@@ -62,10 +63,10 @@ class Resume extends StatelessWidget {
                   onClick: () async {
                     if (!await launchUrl(
                       Uri.parse(
-                          "https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"),
+                          AppStrings.instance.resumeUrl),
                     )) {
                       throw Exception(
-                          'Could not launch ${"https://drive.google.com/file/d/1M3qbYqKM4c9JdMLkhBeCimw_ukGkRRoT/view?usp=sharing"}');
+                          'Could not launch ${AppStrings.instance.resumeUrl}');
                     }
                   },
                 ),
